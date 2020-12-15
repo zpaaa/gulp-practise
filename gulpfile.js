@@ -2,12 +2,12 @@ const gulp = require('gulp')
 const clean = require('gulp-clean')
 const uglify = require('gulp-uglify');
 const postcss = require('gulp-postcss');
-// const rename = require('gulp-rename');
 const cssBase64 = require('gulp-css-base64');
-// const base64 = require('gulp-base64');
 const sass = require('gulp-sass');
 const replace = require('gulp-replace');
 const tap = require('gulp-tap')
+const babel = require('gulp-babel')
+const browserify = require('gulp-browserify');
 
 // 能被转成base64 的最大文件大小
 const IMG_LIMIT_SIZE = 600 * 1024
@@ -35,7 +35,21 @@ const handleScss = (cb) => {
 const handleJs = (cb) => {
   const { src, dest } = gulp
   src('./entry/*.js')
-  .pipe(uglify())
+  .pipe(babel({
+    "presets": [
+      [
+        '@babel/preset-env', {
+          "targets": {
+            "ie": "7",
+          },
+          "corejs": "3",
+          "useBuiltIns": "usage",
+          // "modules": 'commonjs',
+        }
+      ]
+    ]
+  }))
+  .pipe(browserify())
   .pipe(dest('./dist/js', { allowEmpty: true }))
   cb()
 }
@@ -54,7 +68,7 @@ const handleImg = (cb) => {
   const { src, dest } = gulp
   src('./src/images/*', { allowEmpty: true })
   .pipe(tap(function(file, t) {
-    console.log(file.contents.length)
+    // console.log(file.contents.length)
     if (file.contents.length > IMG_LIMIT_SIZE) {
       return t.through(dest, ['./dist/images'])
     }
