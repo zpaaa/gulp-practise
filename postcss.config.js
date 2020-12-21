@@ -1,5 +1,5 @@
-var autoprefixer = require("autoprefixer");
-var cssnano = require("cssnano")
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano")
 module.exports = {
     plugins: [
       autoprefixer(),

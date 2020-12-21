@@ -1,24 +1,7 @@
-console.log('index')
-console.log('index')
-console.log('index')
-console.log('index222')
-const a = 1
-const b = () => {
-  console.log(a)
-}
-const c = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('FUCK')
-    }, 100)
-  })
-}
-c().then(res => {
-  console.log(res)
-})
+// TODO start your code here
 class Test {
   constructor() {
-    console.log('HHH')
+    console.log('hello world')
   }
 }
 const TestInstance = new Test()

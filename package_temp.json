@@ -2,9 +2,10 @@
   "name": "{{projectName}}",
   "version": "{{projectVersion}}",
   "description": "{{projectDescription}}",
-  "main": "./src/index.js",
+  "main": "./entry/index.js",
   "scripts": {
-    "build": "npx gulp"
+    "build": "npx gulp build",
+    "serve": "npx gulp serve"
   },
   "author": "{{author}}",
   "devDependencies": {
@@ -18,11 +19,11 @@
     "gulp-base64": "^0.1.3",
     "gulp-browserify": "^0.5.1",
     "gulp-clean": "^0.4.0",
+    "gulp-connect": "^5.7.0",
     "gulp-css-base64": "^2.0.0",
     "gulp-postcss": "^9.0.0",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.1.0",
-    "gulp-size": "^3.0.0",
     "gulp-tap": "^2.0.0",
     "gulp-uglify": "^3.0.2",
     "postcss-url": "^10.1.1"
